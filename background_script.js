@@ -3,7 +3,8 @@
 const ENUMS = {
     TARGET: {
         CLIPBOARD: 0,
-        GROUP: 1
+        GROUP: 1,
+        STORAGE: 2
     }
 }
 
@@ -28,9 +29,22 @@ const APP_SETTINGS = {
             ]
         },
         {
-            title: 'Open clipboard in tabs',
+            title: 'Open in tabs',
             context: 'tab',
-            callback: () => openTabs()
+            children: [
+                { title: 'From clipboard', callback: () => openTabsFrom(ENUMS.TARGET.CLIPBOARD) },
+                { title: 'From storage', callback: () => openTabsFrom(ENUMS.TARGET.STORAGE) }
+            ]
+        },
+        {
+            title: 'Add to storage',
+            context: 'link',
+            callback: (_, url) => sendUrlTo(url, ENUMS.TARGET.STORAGE)
+        },
+        {
+            title: 'Add to clipboard',
+            context: 'link',
+            callback: (_, url) => sendUrlTo(url, ENUMS.TARGET.CLIPBOARD)
         }
     ]
 }
@@ -63,10 +77,23 @@ function sendTabsTo(direction, tabId, target) {
     })
 }
 
-function openTabs() {
-    navigator.clipboard.readText().then(clipboard => {
-        clipboard.split('\n').forEach(url => browser.tabs.create({ url }))
-    })
+function openTabsFrom(source) {
+    switch (source) {
+        case ENUMS.TARGET.CLIPBOARD:
+            navigator.clipboard.readText().then(clipboard => {
+                clipboard.split('\n').forEach(url => browser.tabs.create({ url }))
+            })
+            break;
+        case ENUMS.TARGET.STORAGE:
+            navigator.clipboard.readText().then(clipboard => {
+                clipboard.split('\n').forEach(url => browser.tabs.create({ url }))
+            })
+            break;
+    }
+}
+
+function sendUrlTo(url) {
+    console.log(url)
 }
 
 function buildMenu(menu, parentId, parentContext) {
