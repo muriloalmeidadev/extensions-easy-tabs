@@ -1,8 +1,8 @@
 # Easy Tabs
 
-This is a personal project created to handle multiple tabs from and to clipboard.
+This is a personal project created to handle multiple tabs urls from and to clipboard and stuff.
 
-For now I'm going to add a few customization behavior thins such as;
+I'm not going to do much here other than a few customization things such as below, the idea of the extension is to be as simple as possible.
 
 - `Consider Current Tab`, which is different behavior than the `close tabs` from firefox, for example.
 - `Close after action` for closing or keeping the tabs open after copy/group action.
