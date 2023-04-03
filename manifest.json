@@ -1,0 +1,28 @@
+{
+	"manifest_version": 2,
+	"name": "Easy Tabs",
+	"author": "morilon",
+	"description": "Copy, paste and group your tabs easily for whatever reason.",
+	"developer": {
+		"name": "morilon",
+		"url": "https://github.com/morilon/extensions-easy-tabs"
+	},
+	"version": "0.0.2",
+	"icons": {
+		"64": "icons/icon.png"
+	},
+	"permissions": [
+		"menus",
+		"tabs",
+		"clipboardWrite",
+		"clipboardRead"
+	],
+	"background": {
+		"scripts": [
+			"background_script.js"
+		]
+	},
+	"options_ui": {
+		"page": "options/index.html"
+	}
+}
